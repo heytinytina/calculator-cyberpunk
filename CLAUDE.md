@@ -42,18 +42,26 @@
 - [e.g. "Always run X after changing the schema"]
 - [e.g. "Package Y requires Z to be installed globally"]
 
-## Engineering Standards
+## Required Engineering Standards
 
 **All new features and enhancements MUST include tests. See `.claude/rules/testing.md` for details.**
+
+Every page designed MUST have a responsive design for mobile use.
+
+**Check the docker logs after implementing any new feature or enhancement.**
 
 **NEVER commit changes unless the user explicitly asks you to.**
 
 If migrations are created, run them when complete.
 
-Standardize patterns by creating reusable components or utilities. If logic is likely to be repeated, extract it. We do not want duplicate code.
+**ALWAYS use the `frontend-design` skill when making or editing the UI.**
+
+When creating new pages that are not full width, center the page — do not hug the left.
+
+Standardize patterns by creating reusable components. If logic is likely to be repeated, create a new component. We do not want duplicate code.
 
 **Data Model Rules**
-- Table names MUST be singular (e.g. `user`, `session`, `order_item`)
+- Table names MUST be singular (e.g. `user`, `user_token`)
 - Every table MUST have `created_at` and `updated_at` timestamp fields
 
 > Add your own project standards below as your team develops conventions.
