@@ -24,8 +24,7 @@ Claude Code is an AI coding assistant that runs in your terminal. You describe w
 │   └── update-erd              Generates a diagram of your database structure
 ├── docs/               Living project documentation
 │   ├── data-model.md           Overview of your data and how it's structured
-│   ├── security-audit-report.md  Latest security scan results
-│   └── study-mode.md           How to use Claude to learn and understand your codebase
+│   └── security-audit-report.md  Latest security scan results
 ├── plans/              Step-by-step build plans (generated before any code is written)
 ├── rules/              Standards Claude follows when writing code for your project
 │   ├── code-style.md           Formatting and naming conventions
@@ -35,7 +34,8 @@ Claude Code is an AI coding assistant that runs in your terminal. You describe w
 │   └── testing.md              How and what to test
 ├── skills/             Background knowledge Claude loads automatically
 │   ├── explaining-code/        Puts Claude into teaching mode when you ask questions
-│   └── frontend-design/        UI and design principles for your project
+│   ├── frontend-design/        UI and design principles for your project
+│   └── study-mode/             Shifts Claude into understanding mode — no code, just learning
 └── specs/              Written descriptions of every feature
     ├── TEMPLATE.md             Starting point for writing a new spec
     └── complete/               Archive of specs for features that have shipped
@@ -167,7 +167,7 @@ The files in `.claude/rules/` tell Claude how to write code for your project. Af
 - **The plan is your checkpoint.** `/implement-spec` always shows you a plan before writing code. Read it. If something looks wrong, say so before approving.
 - **Specs before code, always.** The most common mistake is asking Claude to build something without a spec. Even a rough spec prevents hours of rework.
 - **Move specs to `complete/` when done.** This keeps your active specs folder focused on what's still being built.
-- **Use study mode to learn.** If you want Claude to explain something rather than build it, see `.claude/docs/study-mode.md`.
+- **Use study mode to learn.** Tell Claude "enter study mode" and it will explain rather than build — no code output, just understanding.
 - **Update the glossary.** When new terms or concepts come up in your project, add them to `.claude/rules/glossary.md`. Consistent language between you and Claude prevents a lot of confusion.
 
 ---
@@ -180,19 +180,6 @@ When multiple people work on the same project:
 - `CLAUDE.local.md` (if you create one) is personal and gitignored — use it for your own preferences
 - `.claude/settings.local.json` is also gitignored — use it for personal permission overrides
 - Specs in `.claude/specs/` are the source of truth for what's being built — keep them up to date
-
----
-
-## For Your Presentation
-
-Key talking points:
-
-1. **CLAUDE.md is a briefing document** — everything Claude needs to know about your project, loaded automatically at the start of every session
-2. **Rules files keep it lean and modular** — instead of one long file Claude might ignore, rules are broken into focused files that are always current
-3. **Skills are automatic context** — Claude loads relevant background knowledge without being asked
-4. **Commands are enforced workflows** — not just shortcuts, but processes that ensure specs are written, plans are approved, and code is reviewed before shipping
-5. **Spec-first development** — the most important habit for working effectively with AI; describe before you build
-6. **The plan is a review gate** — Claude always shows you what it's going to do before it does it; you're always in control
 
 ---
 
