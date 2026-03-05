@@ -1,0 +1,235 @@
+/* ============================================
+   Calculator — Cyberpunk Theme
+   Mobile-first, accessible
+   ============================================ */
+
+:root {
+  --color-bg:           #0a0a0a;
+  --color-calc-bg:      #111118;
+  --color-display-bg:   #08080e;
+  --color-btn-digit:    #13131e;
+  --color-btn-operator: #100d18;
+  --color-btn-utility:  #141414;
+
+  --color-cyan:         #00f5ff;
+  --color-cyan-dim:     rgba(0, 245, 255, 0.5);
+  --color-cyan-faint:   rgba(0, 245, 255, 0.12);
+  --color-magenta:      #e600ff;
+  --color-utility:      #ff6b6b;
+  --color-equals-bg:    #00f5ff;
+  --color-equals-fg:    #080808;
+  --color-error:        #ff4f4f;
+
+  --glow-cyan:    0 0 8px rgba(0, 245, 255, 0.7), 0 0 24px rgba(0, 245, 255, 0.3);
+  --glow-cyan-sm: 0 0 6px rgba(0, 245, 255, 0.5);
+
+  --font-display: 'Courier New', 'Lucida Console', monospace;
+  --font-ui:      'Segoe UI', system-ui, Arial, sans-serif;
+
+  --radius-calc: 10px;
+  --radius-btn:  4px;
+  --gap:         2px;
+}
+
+/* --- Reset ------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Page: centered layout (mobile-first) ----------------- */
+body {
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  padding: 12px;
+}
+
+.app {
+  width: 100%;
+  max-width: 340px;
+}
+
+/* --- Calculator card -------------------------------------- */
+.calculator {
+  background: var(--color-calc-bg);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: var(--radius-calc);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.04),
+    0 0 50px rgba(0, 245, 255, 0.05),
+    0 12px 48px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Display panel ---------------------------------------- */
+.display {
+  background: var(--color-display-bg);
+  padding: 18px 18px 14px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 4px;
+  border-bottom: 1px solid rgba(0, 245, 255, 0.12);
+}
+
+.display__expression {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  color: var(--color-cyan-dim);
+  min-height: 1.1em;
+  word-break: break-all;
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+
+.display__current {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--color-cyan);
+  text-shadow: var(--glow-cyan);
+  word-break: break-all;
+  text-align: right;
+  line-height: 1.15;
+  transition: color 0.1s ease, text-shadow 0.1s ease;
+}
+
+.display__current.is-error {
+  color: var(--color-error);
+  text-shadow: 0 0 8px rgba(255, 79, 79, 0.7), 0 0 20px rgba(255, 79, 79, 0.3);
+  font-size: 1.8rem;
+}
+
+/* --- Button grid ------------------------------------------ */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  background: #0b0b11;
+  padding: var(--gap);
+}
+
+/* --- Base button ------------------------------------------ */
+.btn {
+  background: var(--color-btn-digit);
+  border: none;
+  color: var(--color-cyan);
+  font-family: var(--font-ui);
+  font-size: 1.2rem;
+  font-weight: 500;
+  /* min touch target: 44px — WCAG 2.5.5 */
+  min-height: 56px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: var(--radius-btn);
+  transition: background 0.1s ease, box-shadow 0.1s ease, transform 0.07s ease;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--color-cyan);
+  z-index: 1;
+  position: relative;
+}
+
+.btn:hover {
+  background: #1a1a2e;
+  box-shadow: inset 0 0 12px var(--color-cyan-faint);
+}
+
+.btn:active {
+  transform: scale(0.92);
+  background: #1e1e36;
+}
+
+/* --- Span-2 (C and ⌫) ------------------------------------ */
+.btn--span2 {
+  grid-column: span 2;
+}
+
+/* --- Operator buttons ------------------------------------- */
+.btn--operator {
+  background: var(--color-btn-operator);
+  color: var(--color-magenta);
+}
+
+.btn--operator:hover {
+  background: #1c0f26;
+  box-shadow: inset 0 0 12px rgba(230, 0, 255, 0.1);
+}
+
+.btn--operator:active {
+  background: #221230;
+}
+
+.btn--operator:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--color-magenta);
+}
+
+/* --- Utility buttons (C, ⌫) ------------------------------- */
+.btn--utility {
+  background: var(--color-btn-utility);
+  color: var(--color-utility);
+  font-size: 1.05rem;
+}
+
+.btn--utility:hover {
+  background: #1f1414;
+  box-shadow: inset 0 0 12px rgba(255, 107, 107, 0.1);
+}
+
+.btn--utility:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--color-utility);
+}
+
+/* --- Equals button ---------------------------------------- */
+.btn--equals {
+  background: var(--color-equals-bg);
+  color: var(--color-equals-fg);
+  font-weight: 700;
+  font-size: 1.3rem;
+  box-shadow: var(--glow-cyan-sm);
+}
+
+.btn--equals:hover {
+  background: #33f7ff;
+  box-shadow: var(--glow-cyan);
+}
+
+.btn--equals:active {
+  background: #00c8d4;
+  box-shadow: none;
+  transform: scale(0.92);
+}
+
+.btn--equals:focus-visible {
+  box-shadow: var(--glow-cyan), inset 0 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Responsive: larger screens --------------------------- */
+@media (min-width: 480px) {
+  .app {
+    max-width: 360px;
+  }
+
+  .display__current {
+    font-size: 2.8rem;
+  }
+
+  .btn {
+    min-height: 62px;
+    font-size: 1.3rem;
+  }
+
+  .btn--equals {
+    font-size: 1.4rem;
+  }
+}

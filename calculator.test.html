@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator — Tests</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      padding: 32px 24px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #00f5ff;
+      text-shadow: 0 0 10px rgba(0, 245, 255, 0.7);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    p.subtitle {
+      color: rgba(0, 245, 255, 0.4);
+      font-size: 0.8rem;
+      margin-bottom: 24px;
+    }
+
+    #summary {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      padding: 10px 14px;
+      border: 1px solid #1e1e1e;
+      border-radius: 4px;
+      background: #111;
+      display: inline-block;
+    }
+
+    .pass-count { color: #00e676; }
+    .fail-count { color: #ff5252; }
+
+    ul#results {
+      list-style: none;
+      max-width: 680px;
+    }
+
+    #results li {
+      padding: 7px 0;
+      border-bottom: 1px solid #1a1a1a;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    #results li.pass::before { content: '✓  '; color: #00e676; }
+    #results li.fail::before { content: '✗  '; color: #ff5252; }
+    #results li.pass         { color: #777; }
+    #results li.fail         { color: #ff5252; }
+
+    .error-detail {
+      display: block;
+      color: #ff7070;
+      font-size: 0.78rem;
+      margin-left: 1.6em;
+      margin-top: 2px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculator — Test Results</h1>
+  <p class="subtitle">Open this file in your browser to run all tests</p>
+  <div id="summary"></div>
+  <ul id="results"></ul>
+
+  <!-- Load app logic (no DOM required for tests) -->
+  <script src="calculator.js"></script>
+  <!-- Load and run tests -->
+  <script src="calculator.test.js"></script>
+  <!-- Render results -->
+  <script>
+    const ul      = document.getElementById('results');
+    const summary = document.getElementById('summary');
+
+    results.forEach(r => {
+      const li = document.createElement('li');
+      li.className = r.pass ? 'pass' : 'fail';
+      li.textContent = r.description;
+      if (!r.pass && r.error) {
+        const detail = document.createElement('span');
+        detail.className = 'error-detail';
+        detail.textContent = r.error;
+        li.appendChild(detail);
+      }
+      ul.appendChild(li);
+    });
+
+    summary.innerHTML =
+      `<span class="pass-count">${totalPassed} passed</span>` +
+      ` &nbsp;/&nbsp; ` +
+      `<span class="fail-count">${totalFailed} failed</span>` +
+      ` &nbsp;—&nbsp; ${totalPassed + totalFailed} total`;
+  </script>
+</body>
+</html>

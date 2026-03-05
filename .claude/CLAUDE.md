@@ -1,46 +1,34 @@
-# [Project Name]
+# Calculator Web App
 
-[One sentence: what this project does and who it's for]
-
-> **New project?** Run `/choose-stack` to get a stack recommendation, then update this file.
-> Run `/gather-requirements` to start writing your first spec.
+A simple, local calculator web app built for the hackathon learning phase. Runs entirely in the browser with no backend, no database, and no build step.
 
 ## Commands
 
-> Fill these in after your stack is chosen. Include only commands Claude would need to run.
-
 ```bash
-# [start]   # Start development / local server
-# [build]   # Production build
-# [test]    # Run test suite
-# [lint]    # Lint / format
+# start: open index.html in your browser, or use VS Code Live Server extension
+# No build, test, or lint step required for this stack
 ```
 
 ## Stack
 
-> Run `/choose-stack` to have Claude recommend the right stack for your project,
-> or fill this in manually after deciding.
-
-- **Language**: [e.g. TypeScript, Python, Go, Rust]
-- **Framework**: [e.g. Next.js, FastAPI, Express, Django, none]
-- **Database**: [e.g. PostgreSQL, SQLite, MongoDB, none]
-- **Auth**: [e.g. NextAuth, Clerk, custom JWT, none]
-- **Deployment**: [e.g. Vercel, Cloudflare Pages, Railway, AWS, Docker]
+- **Language**: HTML, CSS, JavaScript (vanilla)
+- **Framework**: None
+- **Database**: None
+- **Auth**: None
+- **Deployment**: Local — open index.html directly in the browser
 
 ## Architecture
 
-> Describe how the project is structured. Focus on things Claude can't infer from reading code.
-
-- [How routing or API structure is organized]
-- [Where core business logic lives]
-- [Any non-obvious patterns or conventions]
+- Single `index.html` entry point
+- Calculator logic lives in `calculator.js` alongside the HTML
+- All state is in-memory — nothing is persisted between page loads
+- No routing, no server, no dependencies
 
 ## Important Gotchas
 
-> Things that have burned you before. Vague notes get ignored — be specific.
-
-- [e.g. "Always run X after changing the schema"]
-- [e.g. "Package Y requires Z to be installed globally"]
+- No build step — changes are visible immediately on browser refresh
+- If using VS Code Live Server, it auto-reloads on file save
+- No user data is stored or collected — this is a fully client-side app
 
 ## Required Engineering Standards
 
@@ -48,11 +36,7 @@
 
 Every page designed MUST have a responsive design for mobile use.
 
-**Check the docker logs after implementing any new feature or enhancement.**
-
 **NEVER commit changes unless the user explicitly asks you to.**
-
-If migrations are created, run them when complete.
 
 **ALWAYS use the `frontend-design` skill when making or editing the UI.**
 
@@ -60,11 +44,7 @@ When creating new pages that are not full width, center the page — do not hug 
 
 Standardize patterns by creating reusable components. If logic is likely to be repeated, create a new component. We do not want duplicate code.
 
-**Data Model Rules**
-- Table names MUST be singular (e.g. `user`, `user_token`)
-- Every table MUST have `created_at` and `updated_at` timestamp fields
-
-> Add your own project standards below as your team develops conventions.
+> Add your own project standards below as you develop conventions.
 
 ## Rules
 
