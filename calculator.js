@@ -133,11 +133,16 @@ class Calculator {
   calculate() {
     if (this.isError || this.operator === null || this.waitingForOperand) return;
 
+    const capturedOp = this.operator; // capture before any state mutation
     const currentNum = this.getCurrentNumber();
-    const result = this.compute(this.previousValue, this.operator, currentNum);
+    const result = this.compute(this.previousValue, capturedOp, currentNum);
     const fullExpr = `${this.expression} ${this.formatResult(currentNum)} =`;
 
-    if (result === null) { this.setError(); return; }
+    if (result === null) {
+      this.setError();
+      if (typeof triggerCelebration === 'function') triggerCelebration(capturedOp, true);
+      return;
+    }
 
     const formatted = this.formatResult(result);
     this.currentInput = String(formatted);
@@ -147,6 +152,7 @@ class Calculator {
     this.justEvaluated = true;
     this.waitingForOperand = false;
     this.updateDisplay();
+    if (typeof triggerCelebration === 'function') triggerCelebration(capturedOp, false);
   }
 
   clear() {

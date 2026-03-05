@@ -75,10 +75,21 @@
   <div id="summary"></div>
   <ul id="results"></ul>
 
-  <!-- Load app logic (no DOM required for tests) -->
+  <!--
+    Minimal DOM stubs required by celebration tests.
+    Hidden via CSS — does not appear in test output.
+  -->
+  <div class="app" style="position:fixed;top:100px;left:100px;width:340px;visibility:hidden;pointer-events:none;">
+    <div class="calculator" style="width:340px;height:500px;"></div>
+  </div>
+
+  <!-- Load app logic (no DOM required for calculator tests) -->
   <script src="calculator.js"></script>
+  <!-- Load celebration logic (required for celebration tests) -->
+  <script src="celebration.js"></script>
   <!-- Load and run tests -->
   <script src="calculator.test.js"></script>
+  <script src="celebration.test.js"></script>
   <!-- Render results -->
   <script>
     const ul      = document.getElementById('results');

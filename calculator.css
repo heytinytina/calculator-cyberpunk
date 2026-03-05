@@ -214,6 +214,30 @@ body {
   box-shadow: var(--glow-cyan), inset 0 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
+/* --- Doge Toast ------------------------------------------- */
+
+.doge-toast {
+  font-family: 'Courier New', 'Lucida Console', monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #e600ff;
+  background: #0e0012;
+  border: 1px solid #e600ff;
+  box-shadow: 0 0 10px rgba(230, 0, 255, 0.5), 0 0 24px rgba(230, 0, 255, 0.2);
+  border-radius: 20px;
+  padding: 8px 18px;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.doge-toast--visible {
+  opacity: 1;
+}
+
 /* --- Responsive: larger screens --------------------------- */
 @media (min-width: 480px) {
   .app {
